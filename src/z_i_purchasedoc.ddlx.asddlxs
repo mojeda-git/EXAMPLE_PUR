@@ -29,6 +29,8 @@
 }
 annotate view Z_I_PURCHASEDOC
     with 
+    
+    
 {
 @UI.facet: [
 //Purchase Document Section
