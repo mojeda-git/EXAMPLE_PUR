@@ -1,0 +1,8 @@
+@EndUserText.label: 'Serv Definition for Purchase Document'
+define service ZSD_PURCHASEDPC {
+  expose Z_I_PURCHASEDOC as PurchaseDocument;
+  expose Z_I_PURCHASEDOCITEM as PurchaseItem;
+  expose I_Currency as Currency;
+  expose I_UnitOfMeasure as QuantityUnitofMeasure;
+  expose Z_I_VendorType as VendorType;
+}

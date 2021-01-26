@@ -1,0 +1,132 @@
+@Metadata.layer: #CORE
+@UI.headerInfo: {
+    typeName: 'Order',
+    typeNamePlural: 'Purchase Documents',
+    typeImageUrl: '',
+    imageUrl: 'PurchaseDocumentImageURL',
+    title: {
+        type: #STANDARD,
+        label: '',
+        iconUrl: '',
+        criticality: '',
+        criticalityRepresentation: #WITHOUT_ICON,
+        value: 'PurchaseDocument',
+        valueQualifier: '',
+        targetElement: '',
+        url: ''
+    },
+    description: {
+        type: #STANDARD,
+        label: 'Description',
+        iconUrl: '',
+        criticality: '',
+        criticalityRepresentation: #WITHOUT_ICON,
+        value: '',
+        valueQualifier: '',
+        targetElement: '',
+        url: ''
+    }
+}
+annotate view Z_I_PURCHASEDOC
+    with 
+{
+@UI.facet: [
+//Purchase Document Section
+            { id: 'PurchaseDocumentCollectionFacet', 
+              label: 'Purchase Document', 
+              type: #COLLECTION, 
+              purpose : #STANDARD
+            },
+//Basic Data field group            
+            { id: 'BasicDataFieldGroupReferenceFacet', 
+              parentId: 'PurchaseDocumentCollectionFacet', 
+              label: 'Basic Data',
+              purpose: #STANDARD,
+              targetQualifier : 'BasicDataFieldGroup',
+              type: #FIELDGROUP_REFERENCE
+            },
+//Purchasing Data field group               
+            { 
+            id : 'PurchasingDocumentFieldGroupReferenceFacet',
+            parentId: 'PurchaseDocumentCollectionFacet',
+            label : 'Purchasing Data',
+            type: #FIELDGROUP_REFERENCE,
+            purpose: #STANDARD,
+            targetQualifier : ' PurchasingDocumentFieldGroup'
+            },
+//Items Section
+{
+label : 'Purchase Document Items ',
+type: #LINEITEM_REFERENCE ,
+id : 'PurchaseDocumentitemslineitemReferenceFacet' ,
+purpose: #STANDARD,
+targetElement : '_PurchaseDocumentItem'
+}
+]
+
+
+//Fill BasicData Group 
+@UI.fieldGroup: [{qualifier : 'BasicDataFieldGroup', position : 10, importance :#HIGH}]
+crea_date_time;
+
+@UI.fieldGroup: [{qualifier : 'BasicDataFieldGroup', position : 20, importance :#HIGH}]
+      crea_uname;
+
+@UI.fieldGroup: [{qualifier : 'BasicDataFieldGroup', position : 30, importance :#LOW}]
+      lchg_date_time;
+
+@UI.fieldGroup: [{qualifier : 'BasicDataFieldGroup', position : 40, importance :#LOW}]      
+      lchg_uname;
+
+
+//Fill PurchasingDocument Group
+
+@UI.fieldGroup: [{ qualifier : 'PurchasingDocumentFieldGroup' ,
+position: 10, importance : #HIGH}]
+//@UI.lineItem: [{ importance : #HIGH, position : 10 }]
+//@UI.selectionField : [{ position : 10 }]
+PurchaseDocument;
+
+@UI.fieldGroup: [{ qualifier : 'PurchasingDocumentFieldGroup' ,
+position: 20, importance : #HIGH}]
+Description;
+  
+@UI.fieldGroup: [{ qualifier : 'PurchasingDocumentFieldGroup' ,
+position: 30, importance : #HIGH}]
+@UI .selectionField : [{ position : 20 }]
+Priority;
+
+@UI.fieldGroup: [{ qualifier : 'PurchasingDocumentFieldGroup' ,
+position: 40, importance : #HIGH}]
+PurchasingOrganization;
+
+
+@UI.fieldGroup: [{ qualifier : 'PurchasingDocumentFieldGroup' ,
+position: 50, importance : #HIGH}]
+Status;
+
+
+
+//@UI.lineitem : [{ importance : #HIGH, position : 20 }]
+//PurchaseDocumentitem;
+
+    
+//  @UI.lineItem: [{ position: 20, importance: #LOW }]
+//    Description;
+//
+//  @UI.lineItem: [{ position: 30, importance: #LOW }]
+//   Status;
+//    Priority;
+//    PurchasingOrganization;
+//    PurchaseDocumentImageURL;
+//    crea_date_time;
+//    crea_uname;
+//    lchg_date_time;
+//    lchg_uname;
+//    /* Associations */
+//    _Priority;
+//    _PurchaseDocumentItem;
+//    _PurchasingOrganization;
+//    _Status;
+    
+}
